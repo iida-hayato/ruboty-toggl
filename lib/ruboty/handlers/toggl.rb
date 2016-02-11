@@ -9,6 +9,11 @@ module Ruboty
       )
 
 
+
+      def remember(message)
+        Ruboty::Toggl::Actions::Remember.new(message).call
+      end
+      
       def start(message)
         Ruboty::Toggl::Actions::Start.new(message).call
       end
