@@ -38,24 +38,6 @@ module Ruboty
           @access_token ||= access_tokens[sender_name]
         end
 
-        def client
-          Octokit::Client.new(client_options)
-        end
-
-        def repository
-          message[:repo]
-        end
-
-        def client_options
-          client_options_with_nil_value.reject { |key, value| value.nil? }
-        end
-
-        def client_options_with_nil_value
-          {
-              access_token: access_token,
-          }
-        end
-
         def workspaces
           message.robot.brain.data[NAMESPACE + WORKSPACE] ||= {}
         end
