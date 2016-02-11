@@ -1,5 +1,7 @@
 require 'ruboty'
+require 'togglv8'
 require 'ruboty/handlers/toggl'
 require 'ruboty/toggl/actions/base'
-require 'ruboty/toggl/actions/remember'
+require 'ruboty/toggl/actions/token'
 require 'ruboty/toggl/actions/start'
+require 'ruboty/toggl/actions/workspace'

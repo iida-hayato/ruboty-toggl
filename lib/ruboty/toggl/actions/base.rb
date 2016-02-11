@@ -2,7 +2,9 @@ module Ruboty
   module Toggl
     module Actions
       class Base
-        NAMESPACE = "toggl"
+        NAMESPACE = "toggl."
+        TOKEN = "access_token"
+        WORKSPACE =  "workspace"
 
         attr_reader :message
 
@@ -13,7 +15,7 @@ module Ruboty
         private
 
         def access_tokens
-          message.robot.brain.data[NAMESPACE] ||= {}
+          message.robot.brain.data[NAMESPACE + TOKEN] ||= {}
         end
 
         def body
@@ -54,6 +56,30 @@ module Ruboty
           }
         end
 
+        def workspaces
+          message.robot.brain.data[NAMESPACE + WORKSPACE] ||= {}
+        end
+
+        def require_workspace
+          message.reply("I don't know your toggl access token")
+        end
+
+        def workspace?
+          !workspace.nil?
+        end
+
+        def workspace
+          @workspace ||= workspaces[sender_name]
+        end
+
+        def project
+          toggl
+          @project ||= toggl.projects(workspace).find{|h| h['name'].start_with? message[:project]}
+        end
+
+        def toggl
+          @toggl ||= TogglV8::API.new(access_token)
+        end
       end
     end
   end
