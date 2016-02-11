@@ -73,12 +73,15 @@ module Ruboty
         end
 
         def project
-          toggl
           @project ||= toggl.projects(workspace).find{|h| h['name'].start_with? message[:project]}
         end
 
         def toggl
           @toggl ||= TogglV8::API.new(access_token)
+        end
+
+        def current_time_entry
+          @current_time_entry ||= toggl.get_current_time_entry
         end
       end
     end
