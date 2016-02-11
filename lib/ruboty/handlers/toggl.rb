@@ -8,12 +8,17 @@ module Ruboty
           description: "Remember sender's Toggl access token",
       )
 
+      on(
+          /start (?<description>.+) (?<project>.+)\z/,
+          name: "start",
+          description: "start toggl",
+      )
 
 
       def remember(message)
         Ruboty::Toggl::Actions::Remember.new(message).call
       end
-      
+
       def start(message)
         Ruboty::Toggl::Actions::Start.new(message).call
       end
