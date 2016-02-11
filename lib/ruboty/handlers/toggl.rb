@@ -40,7 +40,7 @@ module Ruboty
       end
 
       def workspaces(message)
-        Ruboty::Toggl::Actions::Workspace.new(message).get_workspaces
+        Ruboty::Toggl::Actions::Workspaces.new(message).call
       end
 
       def start(message)
