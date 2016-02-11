@@ -3,8 +3,12 @@ module Ruboty
     module Actions
       class Workspace < Base
         def call
-          set_workspace
-          report
+          if access_token?
+            set_workspace
+            report
+          else
+            require_access_token
+          end
         rescue => exception
           message.reply("Failed by #{exception.class}")
         end
