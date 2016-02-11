@@ -20,7 +20,7 @@ module Ruboty
         end
 
         def report
-          project = toggl.get_project(current_time_entry['pid'])['name']
+          project = toggl.get_project(current_time_entry['pid'])
           message.reply("Stop `#{current_time_entry['description']}` in project `#{project['name']}` !")
 
         end
