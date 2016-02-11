@@ -14,7 +14,7 @@ module Ruboty
 
         private
         def set_workspace
-          access_tokens[sender_name] = given_workspace
+          workspaces[sender_name] = given_workspace
         end
 
         def report
