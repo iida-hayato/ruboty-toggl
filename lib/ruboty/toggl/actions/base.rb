@@ -72,6 +72,14 @@ module Ruboty
           @workspace ||= workspaces[sender_name]
         end
 
+        def project
+          toggl
+          @project ||= toggl.projects(workspace).find{|h| h['name'].start_with? message[:project]}
+        end
+
+        def toggl
+          @toggl ||= TogglV8::API.new(access_token)
+        end
       end
     end
   end

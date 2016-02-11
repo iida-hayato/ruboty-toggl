@@ -8,7 +8,6 @@ module Ruboty
         end
 
         def get_workspaces
-          toggl = TogglV8::API.new(access_token)
           message.reply("select your workspace.\n #{toggl.my_workspaces.map { |h| "#{h['name']} `workspace #{h['id']}`" }.join("\n")} ")
         end
 

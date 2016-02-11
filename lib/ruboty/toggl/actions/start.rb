@@ -13,17 +13,17 @@ module Ruboty
         private
 
         def start
-          message.reply("Created #{time_entity}")
-        # rescue => exception
-        #   message.reply("Failed by #{exception.class}")
+          message.reply("Start `#{time_entity['description']}` in project `#{project['name']}` !")
+          # rescue => exception
+          #   message.reply("Failed by #{exception.class}")
         end
 
         def time_entity
-          toggl = TogglV8::API.new(access_token)
           params= {
-              :billable => false,
-              :description => message[:description],
-              :project => message[:project],
+              'billable' => false,
+              'description' => message[:description],
+              'pid' => project['id'],
+              'wid' => workspace,
           }
           toggl.start_time_entry(params)
         end
