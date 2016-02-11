@@ -3,6 +3,9 @@ module Ruboty
     module Actions
       class Start < Base
         def call
+          unless workspace?
+            return require_workspace
+          end
           if access_token?
             start
           else
