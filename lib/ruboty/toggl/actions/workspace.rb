@@ -5,7 +5,6 @@ module Ruboty
         def call
           if access_token?
             set_workspace
-            report
           else
             require_access_token
           end
@@ -15,10 +14,11 @@ module Ruboty
 
         private
         def set_workspace
+          unless valid_workspace
+            message.reply("Invalid workspace id #{given_workspace}")
+            return reply_my_workspaces
+          end
           workspaces[sender_name] = given_workspace
-        end
-
-        def report
           message.reply("Remembered #{sender_name}'s workspace")
         end
 
@@ -26,6 +26,11 @@ module Ruboty
           message[:workspace_id]
         end
 
+        def valid_workspace
+          return toggl.projects given_workspace
+        rescue => _
+          return false
+        end
       end
     end
   end

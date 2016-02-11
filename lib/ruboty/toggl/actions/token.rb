@@ -16,6 +16,7 @@ module Ruboty
           end
           access_tokens[sender_name] = given_access_token
           message.reply("Remembered #{sender_name}'s toggl access token")
+          reply_my_workspaces
         end
 
         def given_access_token

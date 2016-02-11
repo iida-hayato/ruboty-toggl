@@ -73,7 +73,11 @@ module Ruboty
         end
 
         def project
-          @project ||= toggl.projects(workspace).find{|h| h['name'].start_with? message[:project]}
+          @project ||= projects.find{|h| h['name'].start_with? message[:project]}
+        end
+
+        def projects
+          toggl.projects(workspace)
         end
 
         def toggl
@@ -83,6 +87,11 @@ module Ruboty
         def current_time_entry
           @current_time_entry ||= toggl.get_current_time_entry
         end
+
+        def reply_my_workspaces
+          message.reply("Select your main workspace.\n #{toggl.my_workspaces.map { |h| "`workspace #{h['id']}`    #{h['name']}" }.join("\n")} ")
+        end
+
       end
     end
   end
