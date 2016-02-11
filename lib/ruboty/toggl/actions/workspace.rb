@@ -5,6 +5,8 @@ module Ruboty
         def call
           set_workspace
           report
+        rescue => exception
+          message.reply("Failed by #{exception.class}")
         end
 
         def get_workspaces

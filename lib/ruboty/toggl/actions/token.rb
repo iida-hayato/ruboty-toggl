@@ -5,6 +5,8 @@ module Ruboty
         def call
           token
           report
+        rescue => exception
+          message.reply("Failed by #{exception.class}")
         end
 
         private

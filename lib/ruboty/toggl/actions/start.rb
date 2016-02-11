@@ -8,14 +8,14 @@ module Ruboty
           else
             require_access_token
           end
+        rescue => exception
+          message.reply("Failed by #{exception.class}")
         end
 
         private
 
         def start
           message.reply("Start `#{time_entity['description']}` in project `#{project['name']}` !")
-          # rescue => exception
-          #   message.reply("Failed by #{exception.class}")
         end
 
         def time_entity
