@@ -4,7 +4,7 @@ module Ruboty
     module Actions
       class Start < Base
         def call
-          if has_access_token?
+          if access_token?
             start
           else
             require_access_token
