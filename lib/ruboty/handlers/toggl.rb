@@ -25,6 +25,11 @@ module Ruboty
           description: "start toggl",
       )
 
+      on(
+          /stop\z/,
+          name: "stop",
+          description: "stop current toggl",
+      )
 
       def token(message)
         Ruboty::Toggl::Actions::Token.new(message).call
@@ -40,6 +45,10 @@ module Ruboty
 
       def start(message)
         Ruboty::Toggl::Actions::Start.new(message).call
+      end
+
+      def stop(message)
+        Ruboty::Toggl::Actions::Stop.new(message).call
       end
     end
   end
