@@ -28,8 +28,8 @@ module Ruboty
           message.reply("I don't know your toggl access token")
         end
 
-        def has_access_token?
-          !!access_token
+        def access_token?
+          !access_token.nil?
         end
 
         def access_token
