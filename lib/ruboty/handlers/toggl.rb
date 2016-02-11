@@ -8,7 +8,7 @@ module Ruboty
           description: "Remember sender's Toggl access token",
       )
       on(
-          /workspace (?<workspace>.+)\z/,
+          /workspace (?<workspace_id>.+)\z/,
           name: "workspace",
           description: "Remember sender's Toggle Workspace",
       )

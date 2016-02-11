@@ -22,7 +22,7 @@ module Ruboty
         end
 
         def given_workspace
-          message[:workspace]
+          message[:workspace_id]
         end
 
       end
