@@ -3,22 +3,25 @@ module Ruboty
     module Actions
       class Workspace < Base
         def call
-          workspace
+          set_workspace
           report
         end
 
-        def workspaces
+        def get_workspaces
           toggl = TogglV8::API.new(access_token)
           message.reply("select your workspace.\n `workspace #{toggl.my_workspaces.map{|h| h["name"]}.join("\n")}` ")
         end
 
         private
+        def set_workspace
+          access_tokens[sender_name] = given_workspace
+        end
 
         def report
           message.reply("Remembered #{sender_name}'s workspace")
         end
 
-        def given_access_token
+        def given_workspace
           message[:workspace]
         end
 
