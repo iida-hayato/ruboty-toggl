@@ -3,10 +3,10 @@ module Ruboty
     module Actions
       class Start < Base
         def call
-          unless workspace?
-            return require_workspace
-          end
           if access_token?
+            unless workspace?
+              return require_workspace
+            end
             start
           else
             require_access_token
@@ -18,6 +18,9 @@ module Ruboty
         private
 
         def start
+          unless project
+            return message.reply("project #{message[:project]} not found.")
+          end
           message.reply("Start `#{time_entity['description']}` in project `#{project['name']}` !")
         end
 

@@ -3,10 +3,10 @@ module Ruboty
     module Actions
       class Stop < Base
         def call
-          unless workspace?
-            return require_workspace
-          end
           if access_token?
+            unless workspace?
+              return require_workspace
+            end
             stop
             report
           else
