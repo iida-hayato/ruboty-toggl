@@ -1,9 +1,9 @@
 module Ruboty
   module Toggl
     module Actions
-      class Remember < Base
+      class Token < Base
         def call
-          remember
+          token
           report
         end
 
@@ -13,7 +13,7 @@ module Ruboty
           message.reply("Remembered #{sender_name}'s toggl access token")
         end
 
-        def remember
+        def token
           access_tokens[sender_name] = given_access_token
         end
 

@@ -14,12 +14,12 @@ module Ruboty
 
         def start
           message.reply("Created #{time_entity}")
-        rescue => exception
-          message.reply("Failed by #{exception.class}")
+        # rescue => exception
+        #   message.reply("Failed by #{exception.class}")
         end
 
         def time_entity
-          toggl = TogglV8::API.new(nil,access_token)
+          toggl = TogglV8::API.new(access_token)
           params= {
               :billable => false,
               :description => message[:description],
