@@ -61,7 +61,7 @@ module Ruboty
         end
 
         def require_workspace
-          message.reply("I don't know your toggl access token")
+          message.reply("I don't know your default workspace.your can get workspace list by `workspaces`")
         end
 
         def workspace?
